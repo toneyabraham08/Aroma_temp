@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -40,6 +41,8 @@ public class DetailsActivity extends AppCompatActivity {
     DatagramSocket datagramSocket;
     AppDatabase db;
     SeekBar seekIntensity;
+
+    Switch statusSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         details = findViewById(R.id.device_details);
         liquidLevel = findViewById(R.id.imageView_liquid_level);
+//        statusSwitch = findViewById(R.id.status_switch);
         if (getIntent().getExtras() != null) {
             Bundle b = getIntent().getExtras();
             model = (DeviceData) b.getSerializable("deviceData");
@@ -293,7 +297,12 @@ public class DetailsActivity extends AppCompatActivity {
         bytes[32] = (byte) model.zone4_end_m;
 //        Changing intensity level to bottom for match with the recieving data from the Hardware
         bytes[33] = (byte) model.intensity_level;
-        bytes[34] = model.setSwitchStatus;
+
+        boolean booleanValue = model.status_switch;
+        byte byteValue = (byte) (booleanValue ? 1 : 0);
+        System.out.println(byteValue);
+        bytes[34] = byteValue;
+
         LocalTime currenttime = LocalTime.now();
         int hour = currenttime.getHour();
         int minute = currenttime.getMinute();

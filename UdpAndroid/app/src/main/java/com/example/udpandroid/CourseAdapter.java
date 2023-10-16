@@ -64,15 +64,21 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
         } else {
             holder.liquidLevel.setImageResource(R.drawable.liquid_low_2);
         }
+        if (model.status_switch == true) {
+            holder.statusSwitch.setChecked(true);
+        } else {
+            holder.statusSwitch.setChecked(false);
+        }
+
 //		holder.statusSwitch.setChecked(true);
         // Inside onBindViewHolder method
-        holder.statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                model.setSwitchStatus(isChecked);
-                saveSwitchState(model.unique_id, isChecked);
-            }
-        });
+//        holder.statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+//                model.setSwitchStatus(isChecked);
+//                saveSwitchState(model.unique_id, isChecked);
+//            }
+//        });
 
 // Remove the getSwitchState method from CourseAdapter
 // Remove the SWITCH_STATE_KEY constant, as it's no longer needed.
@@ -134,13 +140,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
             }
         });
     }
-    private void saveSwitchState(String deviceId, boolean switchStatus) {
-        SharedPreferences preferences = context.getSharedPreferences("SwitchState", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        // Use a unique key for each device to store its switch state
-        editor.putBoolean(deviceId, switchStatus);
-        editor.apply();
-    }
+
+//    private void saveSwitchState(String deviceId, boolean switchStatus) {
+//        SharedPreferences preferences = context.getSharedPreferences("SwitchState", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        // Use a unique key for each device to store its switch state
+//        editor.putBoolean(deviceId, switchStatus);
+//        editor.apply();
+//    }
 
 
 //    public  boolean getSwitchState(String deviceId) {
@@ -161,6 +168,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
         private ImageView courseIV, liquidLevel;
         private TextView courseNameTV, courseRatingTV;
         private Switch statusSwitch;
+
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
