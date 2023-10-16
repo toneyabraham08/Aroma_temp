@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/Theme.UdpAndroid.AppBarOverlay"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:transitionName="splash_image"
+            app:srcCompat="@drawable/ic_back_button" />
+
+        <ImageView
+            android:id="@+id/imageView_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:transitionName="splash_image"
+            app:srcCompat="@drawable/ic_action_home_ad" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textview_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="1dp"
+        android:text="Welcome Name"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="193dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:gravity="center_horizontal"
+        android:text="Add Property"
+        android:singleLine="true"></TextView>
+
+    <TextView
+        android:id="@+id/hint_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:paddingLeft="65dp"
+        android:paddingRight="65dp"
+        android:layout_marginTop="253dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:gravity="center_horizontal"
+        android:text="Create a Group, eg - Home or Office"
+        android:singleLine="false"></TextView>
+
+    <EditText
+        android:id="@+id/group_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/hint_text"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginBottom="-50dp"
+        android:background="@drawable/rounded_edittext_gold"
+        android:gravity="center_horizontal"
+        android:hint="Enter Group Name"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:singleLine="true"
+        android:textAppearance="@style/largeEdittextText"></EditText>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/bottom_back2"
+        android:layout_alignParentBottom="true"
+        >
+
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:transitionName="splash_image"
+            android:src="@drawable/aroma_logo_trans" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_alignBottom="@+id/group_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="-80dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:layout_weight=".5"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:id="@+id/button_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel" />
+
+        <Button
+            android:layout_weight=".5"
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="95dp"
+            android:layout_marginRight="95dp"
+            android:background="@drawable/rounded_black_button"
+            android:text="SAVE" />
+
+    </LinearLayout>
+
+</RelativeLayout>

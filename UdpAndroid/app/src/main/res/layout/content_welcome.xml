@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/page_bg_2"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/imageView_top_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:transitionName="splash_image"
+        app:srcCompat="@drawable/aroma_icon" />
+
+    <TextView
+        android:id="@+id/textview_welcome"
+        android:layout_below="@+id/imageView_top_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Welcome"
+        android:textColor="@color/text_color"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/textview_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:textAlignment="center"
+        android:textColor="@color/text_color"
+        android:text="Please Sign-in to setup and control AROMA 24/7 Scent Devices" />
+
+
+
+    <Button
+        android:layout_below="@+id/textview_first"
+        android:id="@+id/button_signin"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        android:text="Login" />
+
+    <TextView
+        android:id="@+id/textview_dont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_signin"
+        android:layout_gravity="center"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="80dp"
+        android:textColor="@color/text_color"
+        android:text="Dont have an account"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/textview_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_dont"
+        android:layout_gravity="center"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="80dp"
+        android:text="@string/u_create_one_u"
+        android:textColor="@color/text_color"
+        android:textAlignment="center" />
+
+    </LinearLayout>
+</RelativeLayout>

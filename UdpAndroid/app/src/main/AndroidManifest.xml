@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UdpAndroid"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivityEmpty"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".DeviceManage"
+            android:exported="false"
+            android:label="@string/title_activity_device_manage"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AddPropActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_prop"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".DetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar" />
+        <activity
+            android:name=".PropertiesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar" />
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar" />
+
+        <service android:name=".UDPListenerService" />
+
+        <activity
+            android:name=".SenderActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.UdpAndroid.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DeviceManage">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/Theme.UdpAndroid.AppBarOverlay"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:transitionName="splash_image"
+            app:srcCompat="@drawable/ic_back_button" />
+
+        <ImageView
+            android:id="@+id/imageView_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:transitionName="splash_image"
+            app:srcCompat="@drawable/ic_action_home_ad" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textview_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="1dp"
+        android:text="Welcome Name"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_textw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="105dp"
+        android:layout_marginBottom="1dp"
+        android:text="Manage device"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_alignBottom="@+id/textview_textw"
+        android:orientation="horizontal"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="-50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:drawableRight="@drawable/icon_edit"
+            android:id="@+id/group_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginRight="20dp"
+            android:hint="No name yet click to enter Name"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:singleLine="true"></TextView>
+
+
+        <EditText
+            android:visibility="gone"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight=".5"
+            android:id="@+id/group_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext_gold"
+            android:gravity="center_horizontal"
+            android:hint="Device Name"
+            android:imeOptions="actionDone"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:singleLine="true"
+            android:textAppearance="@style/largeEdittextText"></EditText>
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/button_schedule_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        app:icon="@android:drawable/ic_menu_my_calendar"
+        android:contentDescription="Schedule zones"
+        android:text="Schedule"
+        android:textColor="@color/white"
+        app:strokeColor="@android:color/darker_gray"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="16dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rounded_bg">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/aroma_logo_trans"
+            android:transitionName="splash_image" />
+
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

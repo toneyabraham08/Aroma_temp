@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetailsActivity">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/Theme.UdpAndroid.AppBarOverlay"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:transitionName="splash_image"
+            app:srcCompat="@drawable/ic_back_button" />
+
+        <TextView
+            android:id="@+id/textview_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginBottom="1dp"
+            android:text="Zones"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:transitionName="splash_image"
+            app:srcCompat="@drawable/ic_action_home_ad" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/device_details"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".8"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/imageView_liquid_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/liquid_empty"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_weight=".5"
+                    android:background="@drawable/rounded_card"
+                    android:orientation="vertical"
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/button_z1"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp" >
+
+                    <TextView
+                        android:text="Zone 1"
+                        android:paddingTop="5dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <TextView
+                        android:text="Start: "
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/button_z1_from"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="09:00" />
+
+                    <TextView
+                        android:text="End: "
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/button_z1_to"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="10:00" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight=".5"
+                    android:background="@drawable/rounded_card"
+                    android:orientation="vertical"
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/button_z2"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp" >
+
+                    <TextView
+                        android:text="Zone 2"
+                        android:paddingTop="5dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <TextView
+                        android:text="Start: "
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/button_z2_from"
+                        android:layout_margin="7dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="12:00" />
+
+                    <TextView
+                        android:text="End: "
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/button_z2_to"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="14:00" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_weight=".5"
+                    android:background="@drawable/rounded_card"
+                    android:orientation="vertical"
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/button_z3"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp" >
+
+                    <TextView
+                        android:text="Zone 3"
+                        android:paddingTop="5dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <TextView
+                        android:text="Start: "
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/button_z3_from"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="16:00" />
+
+                    <TextView
+                        android:text="End: "
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/button_z3_to"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="17:00" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight=".5"
+                    android:background="@drawable/rounded_card"
+                    android:orientation="vertical"
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/button_z4"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp" >
+
+                    <TextView
+                        android:text="Zone 4"
+                        android:paddingTop="7dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <TextView
+                        android:text="Start: "
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/button_z4_from"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="20:00" />
+
+                    <TextView
+                        android:text="End: "
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <Button
+                        android:id="@+id/button_z4_to"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="21:00" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:text="Intensity Level"
+                android:layout_margin="10dp"
+                android:textSize="16sp"
+                android:paddingLeft="20dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <SeekBar
+                android:id="@+id/seekBar_intencity"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:progressDrawable="@drawable/seekbar_ruler"
+                android:thumb="@drawable/seekbar_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="4"
+                android:min="1"
+                android:layout_marginTop="10dp"
+                android:progress="1" />
+
+            <Button
+                android:id="@+id/button_save_details"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Details" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
