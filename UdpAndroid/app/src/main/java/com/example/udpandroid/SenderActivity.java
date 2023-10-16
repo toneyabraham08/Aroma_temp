@@ -411,7 +411,12 @@ public class SenderActivity extends AppCompatActivity {
                             ob.ip = ip;
                             ob.liquid_level = Integer.parseInt(liquid);
                             ob.intensity_level = Integer.parseInt(intensity_level);
-                            ob.status_switch = Boolean.valueOf(status_switch);
+                            if (status_switch == "1") {
+                                ob.status_switch = true;
+                            } else {
+                                ob.status_switch = false;
+                            }
+//                            ob.status_switch = Boolean.valueOf(status_switch);
                             ob.unique_id = uid;
                             ob.zone1_start = Integer.parseInt(ipb[1]);
                             ob.zone1_start_m = Integer.parseInt(ipb[2]);
