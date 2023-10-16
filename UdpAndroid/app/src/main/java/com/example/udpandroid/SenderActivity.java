@@ -5,18 +5,29 @@ package com.example.udpandroid;
 //import android.app.Activity;
 
 import android.app.AlertDialog;
+//import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+//import android.net.DhcpInfo;
+//import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+//import android.text.Spannable;
+//import android.text.SpannableString;
+//import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+//import android.widget.Toast;
 
+//import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+//import androidx.appcompat.widget.AlertDialogLayout;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -24,14 +35,24 @@ import androidx.room.Room;
 import com.example.udpandroid.db.AppDatabase;
 import com.example.udpandroid.db.DeviceData;
 import com.example.udpandroid.db.PropertyData;
+//import com.google.gson.Gson;
 
+//import org.apache.commons.io.IOUtils;
+//import org.json.JSONException;
+//import org.json.JSONObject;
+//
+//import java.io.BufferedReader;
 import java.io.IOException;
+//import java.io.InputStreamReader;
+//import java.io.StringWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+//import java.net.UnknownHostException;
+//import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -402,7 +423,7 @@ public class SenderActivity extends AppCompatActivity {
                             ob.zone4_start_m = Integer.parseInt(ipb[14]);
                             ob.zone4_end = Integer.parseInt(ipb[15]);
                             ob.zone4_end_m = Integer.parseInt(ipb[16]);
-//                            ob.status_switch = false;
+
                             GetDataAll asyncTask = new GetDataAll(ob);
                             asyncTask.execute("add");
                         } else {

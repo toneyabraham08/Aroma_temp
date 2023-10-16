@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,10 +27,14 @@ import com.example.udpandroid.db.DeviceData;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.nio.charset.StandardCharsets;
+import java.util.Calendar;
 import java.time.LocalTime;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -41,8 +46,6 @@ public class DetailsActivity extends AppCompatActivity {
     DatagramSocket datagramSocket;
     AppDatabase db;
     SeekBar seekIntensity;
-
-    private boolean switch_val;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +63,6 @@ public class DetailsActivity extends AppCompatActivity {
         z4_t = findViewById(R.id.button_z4_to);
         seekIntensity = findViewById(R.id.seekBar_intencity);
 
-        // Inside onCreate method of YourSecondActivity
-        Intent intent = getIntent();
-        boolean switch_val = intent.getBooleanExtra("switchValue", true);
-
-
         findViewById(R.id.imageView_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +74,7 @@ public class DetailsActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                send_request(false);
+                send_request(true);
             }
         });
 
@@ -247,7 +245,6 @@ public class DetailsActivity extends AppCompatActivity {
         Log.d("rajeev","ip "+ipb.length);
 
         byte dummyByte = 0;
-//        boolean switch_val = model.status_switch;
         byte[] bytes = new byte[37];
         int[] digits = new int[model.unique_id.length()];
 
@@ -283,15 +280,12 @@ public class DetailsActivity extends AppCompatActivity {
         bytes[32] = (byte) model.zone4_end_m;
 //        Changing intensity level to bottom for match with the recieving data from the Hardware
         bytes[33] = (byte) model.intensity_level;
+        bytes[34] = dummyByte;
         LocalTime currenttime = LocalTime.now();
         int hour = currenttime.getHour();
         int minute = currenttime.getMinute();
         bytes[35] = (byte) hour;
         bytes[36] = (byte)minute;
-
-        // Convert boolean to byte
-        byte switchval = (byte) (switch_val ? 1 : 0);
-        bytes[34] = switchval;
 
         byte[] buffer = bytes;
         Socket socket = new Socket(model.ip, 8786);
@@ -324,7 +318,6 @@ public class DetailsActivity extends AppCompatActivity {
         String[] ipb = model.ip.split("\\.");
         Log.d("rajeev","ip "+ipb.length);
         byte dummyByte = 0;
-        boolean swtich_val = model.status_switch;
         byte[] bytes = new byte[37];
         int[] digits = new int[model.unique_id.length()];
 
@@ -360,12 +353,7 @@ public class DetailsActivity extends AppCompatActivity {
         bytes[32] = (byte) model.zone4_end_m;
 //        Changing intensity level to bottom for match with the recieving data from the Hardware
         bytes[33] = (byte) model.intensity_level;
-
-        // Convert boolean to byte
-        byte switch_val = (byte) (swtich_val ? 1 : 0);
-        bytes[34] = switch_val;
-        System.out.println("The below is the Switch State.");
-        System.out.println(switch_val);
+        bytes[34] = dummyByte;
         LocalTime currenttime = LocalTime.now();
         int hour = currenttime.getHour();
         int minute = currenttime.getMinute();
