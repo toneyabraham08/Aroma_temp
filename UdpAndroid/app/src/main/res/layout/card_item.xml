@@ -58,13 +58,7 @@
             android:textStyle="bold"
             app:drawableStartCompat="@android:drawable/star_on" />
 
-        <Switch
-            android:id="@+id/status_switch"
-            android:layout_alignParentRight="true"
-            android:paddingRight="7dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Device Status: " />
+
 
         <ImageView
             android:id="@+id/device_liquid_level"

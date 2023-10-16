@@ -1,7 +1,5 @@
 package com.example.udpandroid;
 
-import android.widget.Switch;
-
 import com.google.gson.GsonBuilder;
 
 import java.io.Serializable;
@@ -12,8 +10,6 @@ public class DeviceModel implements Serializable {
 	private String ip;
 	private int device_image;
 	private int liquidLevel;
-
-	private Switch statusSwitch;
 	private String[] timeZones;
 
 	public String getUniqueId() {
@@ -43,16 +39,9 @@ public class DeviceModel implements Serializable {
 	public int getLiquidLevel() {
 		return liquidLevel;
 	}
-	public Switch getstatusSwitch(){
-		return statusSwitch;
-	}
 
 	public void setLiquidLevel(int liquidLevel) {
 		this.liquidLevel = liquidLevel;
-	}
-
-	public void setStatusSwitch(Switch statusSwitch){
-		this.statusSwitch = statusSwitch;
 	}
 
 	public String[] getTimeZones() {
@@ -74,14 +63,13 @@ public class DeviceModel implements Serializable {
 	private boolean status;
 
 	// Constructor
-	public DeviceModel(String uniqueId, String device_ip, int device_image,int liquidLevel,boolean status,String[] timeZones,Switch statusSwitch) {
+	public DeviceModel(String uniqueId, String device_ip, int device_image,int liquidLevel,boolean status,String[] timeZones) {
 		this.uniqueId = uniqueId;
 		this.ip = device_ip;
 		this.device_image = device_image;
 		this.liquidLevel = liquidLevel;
 		this.status = status;
 		this.timeZones = timeZones;
-		this.statusSwitch = statusSwitch;
 	}
 
 	@Override

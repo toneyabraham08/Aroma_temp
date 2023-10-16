@@ -76,13 +76,4 @@ public class DeviceData implements Serializable {
 
     @ColumnInfo(name = "status_switch")
     public boolean status_switch;
-
-    private boolean switchStatus;
-    public boolean getSwitchStatus() {
-        return switchStatus;
-    }
-    public void setSwitchStatus(boolean switchStatus) {
-        this.switchStatus = switchStatus;
-    }
-
 }
