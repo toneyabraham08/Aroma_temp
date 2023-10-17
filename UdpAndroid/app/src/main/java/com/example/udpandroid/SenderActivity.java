@@ -365,6 +365,7 @@ public class SenderActivity extends AppCompatActivity {
                         String time_Zone = "";
                         String intensity_level = "";
                         String status_switch = "";
+                        int switch_state = 0;
                         ip = ip + socket.getInputStream().read();
                         ip = ip + "." + socket.getInputStream().read();
                         ip = ip + "." + socket.getInputStream().read();
@@ -400,6 +401,8 @@ public class SenderActivity extends AppCompatActivity {
                         System.out.println(intensity_level);
 
                         status_switch = status_switch + socket.getInputStream().read();
+                        switch_state = Integer.parseInt(status_switch);
+
                         System.out.println("status_switch value from the packet");
                         System.out.println(status_switch);
 
@@ -411,7 +414,7 @@ public class SenderActivity extends AppCompatActivity {
                             ob.ip = ip;
                             ob.liquid_level = Integer.parseInt(liquid);
                             ob.intensity_level = Integer.parseInt(intensity_level);
-                            if (status_switch == "1") {
+                            if (switch_state == 1) {
                                 ob.status_switch = true;
                             } else {
                                 ob.status_switch = false;

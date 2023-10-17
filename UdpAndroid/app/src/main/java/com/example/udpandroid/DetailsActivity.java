@@ -41,7 +41,7 @@ import java.time.LocalTime;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    Button z1,z2,z3,z4,z1_t,z2_t,z3_t,z4_t,save;
+    Button z1, z2, z3, z4, z1_t, z2_t, z3_t, z4_t, save;
     ImageView liquidLevel;
     TextView details;
     DeviceData model;
@@ -55,8 +55,7 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        db = Room.databaseBuilder(this,
-                AppDatabase.class, "devices_data").build();
+        db = Room.databaseBuilder(this, AppDatabase.class, "devices_data").build();
         z1 = findViewById(R.id.button_z1_from);
         z2 = findViewById(R.id.button_z2_from);
         z3 = findViewById(R.id.button_z3_from);
@@ -95,10 +94,10 @@ public class DetailsActivity extends AppCompatActivity {
 
         details = findViewById(R.id.device_details);
         liquidLevel = findViewById(R.id.imageView_liquid_level);
-        if(getIntent().getExtras()!=null) {
-            Bundle b= getIntent().getExtras();
+        if (getIntent().getExtras() != null) {
+            Bundle b = getIntent().getExtras();
             model = (DeviceData) b.getSerializable("deviceData");
-            if(model!=null) {
+            if (model != null) {
                 setDeviceDetails();
                 details.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -111,34 +110,30 @@ public class DetailsActivity extends AppCompatActivity {
                         final LinearLayout lin = new LinearLayout(DetailsActivity.this);
                         lin.setOrientation(LinearLayout.VERTICAL);
                         input.setHint("Device Name");
-                        if(model.device_name!=null && model.device_name.length()>0) {
+                        if (model.device_name != null && model.device_name.length() > 0) {
                             input.setText(model.device_name);
                         }
-                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.MATCH_PARENT);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                         input.setLayoutParams(lp);
                         lin.addView(input);
                         alertDialog.setView(lin);
                         alertDialog.setIcon(android.R.drawable.btn_plus);
 
-                        alertDialog.setPositiveButton("YES",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        String devName = input.getText().toString();
-                                        model.device_name = devName;
-                                        UpdateData upd = new UpdateData(model);
-                                        upd.execute("");
-                                        setDeviceDetails();
-                                    }
-                                });
+                        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String devName = input.getText().toString();
+                                model.device_name = devName;
+                                UpdateData upd = new UpdateData(model);
+                                upd.execute("");
+                                setDeviceDetails();
+                            }
+                        });
 
-                        alertDialog.setNegativeButton("NO",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.cancel();
-                                    }
-                                });
+                        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
 
                         alertDialog.show();
                     }
@@ -156,57 +151,57 @@ public class DetailsActivity extends AppCompatActivity {
         z1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePicker(z1,model.zone1_start,model.zone1_start_m);
+                showTimePicker(z1, model.zone1_start, model.zone1_start_m);
             }
         });
         z2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePicker(z2,model.zone2_start,model.zone2_start_m);
+                showTimePicker(z2, model.zone2_start, model.zone2_start_m);
             }
         });
         z3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePicker(z3,model.zone3_start,model.zone3_start_m);
+                showTimePicker(z3, model.zone3_start, model.zone3_start_m);
             }
         });
         z4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePicker(z4,model.zone4_start,model.zone4_start_m);
+                showTimePicker(z4, model.zone4_start, model.zone4_start_m);
             }
         });
 
         z1_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePicker(z1_t,model.zone1_end,model.zone1_end_m);
+                showTimePicker(z1_t, model.zone1_end, model.zone1_end_m);
             }
         });
         z2_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePicker(z2_t,model.zone2_end,model.zone2_end_m);
+                showTimePicker(z2_t, model.zone2_end, model.zone2_end_m);
             }
         });
         z3_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePicker(z3_t,model.zone3_end,model.zone3_end_m);
+                showTimePicker(z3_t, model.zone3_end, model.zone3_end_m);
             }
         });
         z4_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePicker(z4_t,model.zone4_end,model.zone4_end_m);
+                showTimePicker(z4_t, model.zone4_end, model.zone4_end_m);
             }
         });
     }
 
     private void setDeviceDetails() {
-        if(model.device_name!=null && model.device_name.length()>0) {
-            details.setText(model.device_name+ " - " + model.ip);
+        if (model.device_name != null && model.device_name.length() > 0) {
+            details.setText(model.device_name + " - " + model.ip);
         } else {
             details.setText("No Name - " + model.ip);
         }
@@ -220,8 +215,10 @@ public class DetailsActivity extends AppCompatActivity {
         setButtonText(z4_t, model.zone4_end, model.zone4_end_m);
         seekIntensity.setProgress(model.intensity_level);
 //        switchStatus.setChecked(model.status_switch);
-        switchStatus.setChecked(true);
-
+//        switchStatus.setChecked(true);
+        System.out.println("The Data recieved at and made as setchecked ");
+        System.out.println(model.status_switch);
+        switchStatus.setChecked(model.status_switch ? true : false);
         seekIntensity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -235,7 +232,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 model.intensity_level = progress;
 
             }
@@ -246,8 +243,10 @@ public class DetailsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     model.status_switch = true;
-                    } else {
+                    switchStatus.setChecked(true);
+                } else {
                     model.status_switch = false;
+                    switchStatus.setChecked(false);
                 }
             }
         });
@@ -259,23 +258,23 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void doOperationTcp() throws IOException {
-        Log.d("rajeev","ip finding ");
+        Log.d("rajeev", "ip finding ");
 //        String datatoSend = "";
         String[] ipb = model.ip.split("\\.");
-        Log.d("rajeev","ip "+ipb.length);
+        Log.d("rajeev", "ip " + ipb.length);
 
         byte dummyByte = 0;
         byte[] bytes = new byte[37];
         int[] digits = new int[model.unique_id.length()];
 
-        for (int i=0;i<=ipb.length+ model.unique_id.length();i++) {
-            if (i<ipb.length) {
+        for (int i = 0; i <= ipb.length + model.unique_id.length(); i++) {
+            if (i < ipb.length) {
                 bytes[i] = (byte) Integer.parseInt(ipb[i]);
-            } else if (i<ipb.length+ 4) {
-                bytes[i] = (byte)dummyByte;
+            } else if (i < ipb.length + 4) {
+                bytes[i] = (byte) dummyByte;
             } else {
-                for (int j=0;j<model.unique_id.length();j++){
-                    digits[j] = Integer.parseInt(model.unique_id.substring(j,j+1));
+                for (int j = 0; j < model.unique_id.length(); j++) {
+                    digits[j] = Integer.parseInt(model.unique_id.substring(j, j + 1));
                     bytes[i] = (byte) digits[j];
                     i++;
                 }
@@ -309,7 +308,7 @@ public class DetailsActivity extends AppCompatActivity {
         int hour = currenttime.getHour();
         int minute = currenttime.getMinute();
         bytes[35] = (byte) hour;
-        bytes[36] = (byte)minute;
+        bytes[36] = (byte) minute;
 
         byte[] buffer = bytes;
         Socket socket = new Socket(model.ip, 8786);
@@ -334,25 +333,25 @@ public class DetailsActivity extends AppCompatActivity {
         try {
             datagramSocket = new DatagramSocket(8787);
         } catch (SocketException e1) {
-            Log.e("testing","socket exception creating socket"+e1.getMessage());
+            Log.e("testing", "socket exception creating socket" + e1.getMessage());
             e1.printStackTrace();
         }
 //        String datatoSend = "";
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         String[] ipb = model.ip.split("\\.");
-        Log.d("rajeev","ip "+ipb.length);
+        Log.d("rajeev", "ip " + ipb.length);
         byte dummyByte = 0;
         byte[] bytes = new byte[37];
         int[] digits = new int[model.unique_id.length()];
 
-        for (int i=0;i<=ipb.length+ model.unique_id.length();i++) {
-            if (i<ipb.length) {
+        for (int i = 0; i <= ipb.length + model.unique_id.length(); i++) {
+            if (i < ipb.length) {
                 bytes[i] = (byte) Integer.parseInt(ipb[i]);
-            } else if (i<ipb.length+ 4) {
-                bytes[i] = (byte)dummyByte;
+            } else if (i < ipb.length + 4) {
+                bytes[i] = (byte) dummyByte;
             } else {
-                for (int j=0;j<model.unique_id.length();j++){
-                    digits[j] = Integer.parseInt(model.unique_id.substring(j,j+1));
+                for (int j = 0; j < model.unique_id.length(); j++) {
+                    digits[j] = Integer.parseInt(model.unique_id.substring(j, j + 1));
                     bytes[i] = (byte) digits[j];
                     i++;
                 }
@@ -382,16 +381,15 @@ public class DetailsActivity extends AppCompatActivity {
         int hour = currenttime.getHour();
         int minute = currenttime.getMinute();
         bytes[35] = (byte) hour;
-        bytes[36] = (byte)minute;
+        bytes[36] = (byte) minute;
 
         byte[] buffer = bytes;
 
         DatagramPacket packet = null;
         try {
-            packet = new DatagramPacket(
-                    buffer, buffer.length, new Util().getBroadcastAddress(getBaseContext()), 8787);
+            packet = new DatagramPacket(buffer, buffer.length, new Util().getBroadcastAddress(getBaseContext()), 8787);
         } catch (IOException e) {
-            Log.e("testing","packet exception creating packet"+e.getMessage());
+            Log.e("testing", "packet exception creating packet" + e.getMessage());
             e.printStackTrace();
         }
 
@@ -399,7 +397,7 @@ public class DetailsActivity extends AppCompatActivity {
             datagramSocket.send(packet);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("testing","socket send exception sending to socket"+e.getMessage());
+            Log.e("testing", "socket send exception sending to socket" + e.getMessage());
         }
     }
 
@@ -408,8 +406,8 @@ public class DetailsActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Boolean... isTcp) {
             try {
-                Log.d("rajeev","isTcp "+isTcp[0]);
-                if(!isTcp[0]) {
+                Log.d("rajeev", "isTcp " + isTcp[0]);
+                if (!isTcp[0]) {
                     doOperation();
                 } else {
                     doOperationTcp();
@@ -417,8 +415,8 @@ public class DetailsActivity extends AppCompatActivity {
                 return "Done";
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.e("testing","operation exception "+e.getMessage());
-                Log.d("rajeev","isTcp "+isTcp[0]);
+                Log.e("testing", "operation exception " + e.getMessage());
+                Log.d("rajeev", "isTcp " + isTcp[0]);
                 return e.getLocalizedMessage();
             }
         }
@@ -439,7 +437,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onPause();
         try {
             datagramSocket.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -447,229 +445,226 @@ public class DetailsActivity extends AppCompatActivity {
     int mHour = 0;
     int mMinute = 0;
 
-    public void showTimePicker(Button buto,int hours,int min){
+    public void showTimePicker(Button buto, int hours, int min) {
         mHour = hours;
         mMinute = min;
 
         // Launch Time Picker Dialog
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay,
-                                          int minute) {
-                        switch (buto.getId()) {
-                            case R.id.button_z1_from:
-                                if(hourOfDay < model.zone2_start) {
-                                    if(hourOfDay <= model.zone1_end) {
-                                        if(hourOfDay== model.zone1_end) {
-                                            if (minute < model.zone1_end_m) {
-                                                model.zone1_start = hourOfDay;
-                                                model.zone1_start_m = minute;
-                                                setButtonText(buto, model.zone1_start, model.zone1_start_m);
-                                            } else {
-                                                Toast.makeText(getBaseContext(),"Time cannot be greater than end time",Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            model.zone1_start = hourOfDay;
-                                            model.zone1_start_m = minute;
-                                            setButtonText(buto, model.zone1_start, model.zone1_start_m);
-                                        }
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                switch (buto.getId()) {
+                    case R.id.button_z1_from:
+                        if (hourOfDay < model.zone2_start) {
+                            if (hourOfDay <= model.zone1_end) {
+                                if (hourOfDay == model.zone1_end) {
+                                    if (minute < model.zone1_end_m) {
+                                        model.zone1_start = hourOfDay;
+                                        model.zone1_start_m = minute;
+                                        setButtonText(buto, model.zone1_start, model.zone1_start_m);
                                     } else {
-                                        Toast.makeText(getBaseContext(),"Time cannot be greater than end time",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getBaseContext(), "Time cannot be greater than end time", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
-                                    Toast.makeText(getBaseContext(),"Time cannot be greater next zone",Toast.LENGTH_SHORT).show();
+                                    model.zone1_start = hourOfDay;
+                                    model.zone1_start_m = minute;
+                                    setButtonText(buto, model.zone1_start, model.zone1_start_m);
                                 }
-                            break;
-
-                            case R.id.button_z1_to:
-                                if(hourOfDay < model.zone2_start) {
-                                    if(hourOfDay >= model.zone1_start) {
-                                        if(hourOfDay== model.zone1_start) {
-                                            if (minute > model.zone1_start_m) {
-                                                model.zone1_end = hourOfDay;
-                                                model.zone1_end_m = minute;
-                                                setButtonText(buto, model.zone1_end, model.zone1_end_m);
-                                            } else {
-                                                Toast.makeText(getBaseContext(),"Time cannot be less than start time",Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            model.zone1_end = hourOfDay;
-                                            model.zone1_end_m = minute;
-                                            setButtonText(buto, model.zone1_end, model.zone1_end_m);
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(),"Time cannot be less than start time",Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getBaseContext(),"Time cannot be greater next zone",Toast.LENGTH_SHORT).show();
-                                }
-                                break;
-
-                            case R.id.button_z2_from:
-                                if(hourOfDay < model.zone3_start) {
-                                    if(hourOfDay <= model.zone2_end) {
-                                        if(hourOfDay== model.zone2_end) {
-                                            if (minute < model.zone2_end_m){
-                                                model.zone2_start = hourOfDay;
-                                                model.zone2_start_m = minute;
-                                                setButtonText(buto, model.zone2_start, model.zone2_start_m);
-                                            } else {
-                                                Toast.makeText(getBaseContext(),"Time cannot be greater than end time",Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            model.zone2_start = hourOfDay;
-                                            model.zone2_start_m = minute;
-                                            setButtonText(buto, model.zone2_start, model.zone2_start_m);
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(),"Time cannot be greater than end time",Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getBaseContext(),"Time cannot be greater next zone",Toast.LENGTH_SHORT).show();
-                                }
-                                break;
-
-                            case R.id.button_z2_to:
-                                if(hourOfDay < model.zone3_start) {
-                                    if(hourOfDay >= model.zone2_start) {
-                                        if(hourOfDay== model.zone2_start) {
-                                            if (minute > model.zone2_start_m) {
-                                                model.zone2_end = hourOfDay;
-                                                model.zone2_end_m = minute;
-                                                setButtonText(buto, model.zone2_end, model.zone2_end_m);
-                                            } else {
-                                                Toast.makeText(getBaseContext(),"Time cannot be less than start time",Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            model.zone2_end = hourOfDay;
-                                            model.zone2_end_m = minute;
-                                            setButtonText(buto, model.zone2_end, model.zone2_end_m);
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(),"Time cannot be less than start time",Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getBaseContext(),"Time cannot be greater next zone",Toast.LENGTH_SHORT).show();
-                                }
-                                break;
-
-                            case R.id.button_z3_from:
-                                if(hourOfDay < model.zone4_start) {
-                                    if(hourOfDay <= model.zone3_end) {
-                                        if(hourOfDay== model.zone3_end) {
-                                            if (minute < model.zone3_end_m) {
-                                                model.zone3_start = hourOfDay;
-                                                model.zone3_start_m = minute;
-                                                setButtonText(buto, model.zone3_start, model.zone3_start_m);
-                                            } else {
-                                                Toast.makeText(getBaseContext(),"Time cannot be greater than end time",Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            model.zone3_start = hourOfDay;
-                                            model.zone3_start_m = minute;
-                                            setButtonText(buto, model.zone3_start, model.zone3_start_m);
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(),"Time cannot be greater than end time",Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getBaseContext(),"Time cannot be greater next zone",Toast.LENGTH_SHORT).show();
-                                }
-                                break;
-
-                            case R.id.button_z3_to:
-                                if(hourOfDay < model.zone4_start) {
-                                    if(hourOfDay >= model.zone3_start) {
-                                        if(hourOfDay== model.zone3_start) {
-                                            if (minute > model.zone3_start_m) {
-                                                model.zone3_end = hourOfDay;
-                                                model.zone3_end_m = minute;
-                                                setButtonText(buto, model.zone3_end, model.zone3_end_m);
-                                            } else {
-                                                Toast.makeText(getBaseContext(),"Time cannot be less than start time",Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            model.zone3_end = hourOfDay;
-                                            model.zone3_end_m = minute;
-                                            setButtonText(buto, model.zone3_end, model.zone3_end_m);
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(),"Time cannot be less than start time",Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getBaseContext(),"Time cannot be greater next zone",Toast.LENGTH_SHORT).show();
-                                }
-                                break;
-
-                            case R.id.button_z4_from:
-                                if(hourOfDay > model.zone3_start) {
-                                    if(hourOfDay <= model.zone4_end) {
-                                        if(hourOfDay== model.zone4_end) {
-                                            if (minute < model.zone4_end_m){
-                                                model.zone4_start = hourOfDay;
-                                                model.zone4_start_m = minute;
-                                                setButtonText(buto, model.zone4_start, model.zone4_start_m);
-                                            } else {
-                                                Toast.makeText(getBaseContext(),"Time cannot be greater than end time",Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            model.zone4_start = hourOfDay;
-                                            model.zone4_start_m = minute;
-                                            setButtonText(buto, model.zone4_start, model.zone4_start_m);
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(),"Time cannot be greater than end time",Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getBaseContext(),"Time cannot be less than previous zone",Toast.LENGTH_SHORT).show();
-                                }
-                                break;
-
-                            case R.id.button_z4_to:
-                                if(hourOfDay > model.zone3_start) {
-                                    if(hourOfDay >= model.zone4_start) {
-                                        if(hourOfDay== model.zone4_start) {
-                                            if (minute > model.zone4_start_m) {
-                                                model.zone4_end = hourOfDay;
-                                                model.zone4_end_m = minute;
-                                                setButtonText(buto, model.zone4_end, model.zone4_end_m);
-                                            } else {
-                                                Toast.makeText(getBaseContext(),"Time cannot be less than start time",Toast.LENGTH_SHORT).show();
-                                            }
-                                        } else {
-                                            model.zone4_end = hourOfDay;
-                                            model.zone4_end_m = minute;
-                                            setButtonText(buto, model.zone4_end, model.zone4_end_m);
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(),"Time cannot be less than start time",Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getBaseContext(),"Time cannot be less than previous zone",Toast.LENGTH_SHORT).show();
-                                }
-                                break;
-
-
-
-                            default:
-                                    break;
+                            } else {
+                                Toast.makeText(getBaseContext(), "Time cannot be greater than end time", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Time cannot be greater next zone", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                }, mHour, mMinute, false);
+                        break;
+
+                    case R.id.button_z1_to:
+                        if (hourOfDay < model.zone2_start) {
+                            if (hourOfDay >= model.zone1_start) {
+                                if (hourOfDay == model.zone1_start) {
+                                    if (minute > model.zone1_start_m) {
+                                        model.zone1_end = hourOfDay;
+                                        model.zone1_end_m = minute;
+                                        setButtonText(buto, model.zone1_end, model.zone1_end_m);
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Time cannot be less than start time", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    model.zone1_end = hourOfDay;
+                                    model.zone1_end_m = minute;
+                                    setButtonText(buto, model.zone1_end, model.zone1_end_m);
+                                }
+                            } else {
+                                Toast.makeText(getBaseContext(), "Time cannot be less than start time", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Time cannot be greater next zone", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case R.id.button_z2_from:
+                        if (hourOfDay < model.zone3_start) {
+                            if (hourOfDay <= model.zone2_end) {
+                                if (hourOfDay == model.zone2_end) {
+                                    if (minute < model.zone2_end_m) {
+                                        model.zone2_start = hourOfDay;
+                                        model.zone2_start_m = minute;
+                                        setButtonText(buto, model.zone2_start, model.zone2_start_m);
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Time cannot be greater than end time", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    model.zone2_start = hourOfDay;
+                                    model.zone2_start_m = minute;
+                                    setButtonText(buto, model.zone2_start, model.zone2_start_m);
+                                }
+                            } else {
+                                Toast.makeText(getBaseContext(), "Time cannot be greater than end time", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Time cannot be greater next zone", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case R.id.button_z2_to:
+                        if (hourOfDay < model.zone3_start) {
+                            if (hourOfDay >= model.zone2_start) {
+                                if (hourOfDay == model.zone2_start) {
+                                    if (minute > model.zone2_start_m) {
+                                        model.zone2_end = hourOfDay;
+                                        model.zone2_end_m = minute;
+                                        setButtonText(buto, model.zone2_end, model.zone2_end_m);
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Time cannot be less than start time", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    model.zone2_end = hourOfDay;
+                                    model.zone2_end_m = minute;
+                                    setButtonText(buto, model.zone2_end, model.zone2_end_m);
+                                }
+                            } else {
+                                Toast.makeText(getBaseContext(), "Time cannot be less than start time", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Time cannot be greater next zone", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case R.id.button_z3_from:
+                        if (hourOfDay < model.zone4_start) {
+                            if (hourOfDay <= model.zone3_end) {
+                                if (hourOfDay == model.zone3_end) {
+                                    if (minute < model.zone3_end_m) {
+                                        model.zone3_start = hourOfDay;
+                                        model.zone3_start_m = minute;
+                                        setButtonText(buto, model.zone3_start, model.zone3_start_m);
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Time cannot be greater than end time", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    model.zone3_start = hourOfDay;
+                                    model.zone3_start_m = minute;
+                                    setButtonText(buto, model.zone3_start, model.zone3_start_m);
+                                }
+                            } else {
+                                Toast.makeText(getBaseContext(), "Time cannot be greater than end time", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Time cannot be greater next zone", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case R.id.button_z3_to:
+                        if (hourOfDay < model.zone4_start) {
+                            if (hourOfDay >= model.zone3_start) {
+                                if (hourOfDay == model.zone3_start) {
+                                    if (minute > model.zone3_start_m) {
+                                        model.zone3_end = hourOfDay;
+                                        model.zone3_end_m = minute;
+                                        setButtonText(buto, model.zone3_end, model.zone3_end_m);
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Time cannot be less than start time", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    model.zone3_end = hourOfDay;
+                                    model.zone3_end_m = minute;
+                                    setButtonText(buto, model.zone3_end, model.zone3_end_m);
+                                }
+                            } else {
+                                Toast.makeText(getBaseContext(), "Time cannot be less than start time", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Time cannot be greater next zone", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case R.id.button_z4_from:
+                        if (hourOfDay > model.zone3_start) {
+                            if (hourOfDay <= model.zone4_end) {
+                                if (hourOfDay == model.zone4_end) {
+                                    if (minute < model.zone4_end_m) {
+                                        model.zone4_start = hourOfDay;
+                                        model.zone4_start_m = minute;
+                                        setButtonText(buto, model.zone4_start, model.zone4_start_m);
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Time cannot be greater than end time", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    model.zone4_start = hourOfDay;
+                                    model.zone4_start_m = minute;
+                                    setButtonText(buto, model.zone4_start, model.zone4_start_m);
+                                }
+                            } else {
+                                Toast.makeText(getBaseContext(), "Time cannot be greater than end time", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Time cannot be less than previous zone", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case R.id.button_z4_to:
+                        if (hourOfDay > model.zone3_start) {
+                            if (hourOfDay >= model.zone4_start) {
+                                if (hourOfDay == model.zone4_start) {
+                                    if (minute > model.zone4_start_m) {
+                                        model.zone4_end = hourOfDay;
+                                        model.zone4_end_m = minute;
+                                        setButtonText(buto, model.zone4_end, model.zone4_end_m);
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Time cannot be less than start time", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    model.zone4_end = hourOfDay;
+                                    model.zone4_end_m = minute;
+                                    setButtonText(buto, model.zone4_end, model.zone4_end_m);
+                                }
+                            } else {
+                                Toast.makeText(getBaseContext(), "Time cannot be less than start time", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Time cannot be less than previous zone", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+
+                    default:
+                        break;
+                }
+            }
+        }, mHour, mMinute, false);
         timePickerDialog.show();
     }
 
     private void setButtonText(Button buto, int model, int model1) {
         String txt = "";
-        if(model<=0) {
+        if (model <= 0) {
             model = 5;
         }
-        if(model<10) {
+        if (model < 10) {
             txt = txt + "0";
         }
-        txt = txt + model +":";
-        if(model1<10) {
+        txt = txt + model + ":";
+        if (model1 < 10) {
             txt = txt + "0";
         }
         txt = txt + model1;
@@ -680,16 +675,17 @@ public class DetailsActivity extends AppCompatActivity {
     private class UpdateData extends AsyncTask<String, String, String> {
 
         DeviceData obj;
+
         public UpdateData(DeviceData ob) {
             obj = ob;
         }
 
         @Override
         protected String doInBackground(String... strings) {
-                DeviceData available = db.deviceDao().findById(obj.unique_id);
-                if(available!=null) {
-                    db.deviceDao().updateDevice(obj);
-                }
+            DeviceData available = db.deviceDao().findById(obj.unique_id);
+            if (available != null) {
+                db.deviceDao().updateDevice(obj);
+            }
             return "Done";
         }
 
