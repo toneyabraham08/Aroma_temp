@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 //import android.widget.Toast;
 
@@ -364,7 +365,6 @@ public class SenderActivity extends AppCompatActivity {
                         String liquid = "";
                         String time_Zone = "";
                         String intensity_level = "";
-                        String status_switch = "";
                         ip = ip + socket.getInputStream().read();
                         ip = ip + "." + socket.getInputStream().read();
                         ip = ip + "." + socket.getInputStream().read();
@@ -399,10 +399,6 @@ public class SenderActivity extends AppCompatActivity {
                         System.out.println("intensity_level value from the packet");
                         System.out.println(intensity_level);
 
-                        status_switch = status_switch + socket.getInputStream().read();
-                        System.out.println("status_switch value from the packet");
-                        System.out.println(status_switch);
-
                         String[] ipb = time_Zone.split("\\.");
                         if ((ip.length() + uid.length() + time_Zone.length() > 25)) {
                             System.out.println("ipb value from the packet");
@@ -411,12 +407,6 @@ public class SenderActivity extends AppCompatActivity {
                             ob.ip = ip;
                             ob.liquid_level = Integer.parseInt(liquid);
                             ob.intensity_level = Integer.parseInt(intensity_level);
-                            if (status_switch == "1") {
-                                ob.status_switch = true;
-                            } else {
-                                ob.status_switch = false;
-                            }
-//                            ob.status_switch = Boolean.valueOf(status_switch);
                             ob.unique_id = uid;
                             ob.zone1_start = Integer.parseInt(ipb[1]);
                             ob.zone1_start_m = Integer.parseInt(ipb[2]);

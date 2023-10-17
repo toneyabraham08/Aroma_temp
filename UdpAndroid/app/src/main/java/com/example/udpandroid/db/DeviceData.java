@@ -74,6 +74,4 @@ public class DeviceData implements Serializable {
     @ColumnInfo(name = "zone4_end_m")
     public int zone4_end_m;
 
-    @ColumnInfo(name = "status_switch")
-    public boolean status_switch;
 }
