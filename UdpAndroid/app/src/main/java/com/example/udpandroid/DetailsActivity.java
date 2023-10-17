@@ -49,6 +49,7 @@ public class DetailsActivity extends AppCompatActivity {
     AppDatabase db;
     SeekBar seekIntensity;
 
+    Switch switchStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class DetailsActivity extends AppCompatActivity {
         z3_t = findViewById(R.id.button_z3_to);
         z4_t = findViewById(R.id.button_z4_to);
         seekIntensity = findViewById(R.id.seekBar_intencity);
+        switchStatus = findViewById(R.id.status_switch);
 
 
         findViewById(R.id.imageView_back).setOnClickListener(new View.OnClickListener() {
@@ -217,6 +219,8 @@ public class DetailsActivity extends AppCompatActivity {
         setButtonText(z4, model.zone4_start, model.zone4_start_m);
         setButtonText(z4_t, model.zone4_end, model.zone4_end_m);
         seekIntensity.setProgress(model.intensity_level);
+//        switchStatus.setChecked(model.status_switch);
+        switchStatus.setChecked(true);
 
         seekIntensity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -237,6 +241,16 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        switchStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    model.status_switch = true;
+                    } else {
+                    model.status_switch = false;
+                }
+            }
+        });
     }
 
     public void send_request(boolean isTcp) {
@@ -287,7 +301,9 @@ public class DetailsActivity extends AppCompatActivity {
 //        Changing intensity level to bottom for match with the recieving data from the Hardware
         bytes[33] = (byte) model.intensity_level;
 
-        bytes[34] = dummyByte;
+        byte switch_val = model.status_switch ? (byte) 1 : (byte) 0;
+        System.out.println("Byte value: " + switch_val);
+        bytes[34] = (byte) switch_val;
 
         LocalTime currenttime = LocalTime.now();
         int hour = currenttime.getHour();

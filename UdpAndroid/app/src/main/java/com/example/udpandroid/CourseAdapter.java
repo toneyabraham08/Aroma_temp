@@ -114,6 +114,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
 			courseIV = itemView.findViewById(R.id.idIVDeviceImage);
 			courseNameTV = itemView.findViewById(R.id.device_name);
 			courseRatingTV = itemView.findViewById(R.id.device_details);
+			statusSwitch = itemView.findViewById(R.id.status_switch);
 			liquidLevel = itemView.findViewById(R.id.device_liquid_level);
 		}
 	}
