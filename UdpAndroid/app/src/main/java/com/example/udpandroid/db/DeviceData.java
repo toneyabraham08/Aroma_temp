@@ -76,4 +76,5 @@ public class DeviceData implements Serializable {
 
     @ColumnInfo(name = "status_switch")
     public boolean status_switch;
+
 }

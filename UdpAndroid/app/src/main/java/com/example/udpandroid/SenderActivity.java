@@ -76,9 +76,9 @@ public class SenderActivity extends AppCompatActivity {
     Thread serverThread = null;
     public static final int SERVER_PORT = 8787;
     private Handler handler;
-    //    private int greenColor = Color.BLACK;
+//    private int greenColor = Color.BLACK;
     CourseAdapter courseAdapter;
-    //    Toolbar toolbar;
+//    Toolbar toolbar;
     List<DeviceData> dbData;
     AppDatabase db;
     PropertyData prop;
@@ -364,8 +364,8 @@ public class SenderActivity extends AppCompatActivity {
                         String liquid = "";
                         String time_Zone = "";
                         String intensity_level = "";
-                        String status_switch = "";
-                        int switch_state = 0;
+                        String switch_status = "";
+                        int switch_state_int ;
                         ip = ip + socket.getInputStream().read();
                         ip = ip + "." + socket.getInputStream().read();
                         ip = ip + "." + socket.getInputStream().read();
@@ -400,11 +400,11 @@ public class SenderActivity extends AppCompatActivity {
                         System.out.println("intensity_level value from the packet");
                         System.out.println(intensity_level);
 
-                        status_switch = status_switch + socket.getInputStream().read();
-                        switch_state = Integer.parseInt(status_switch);
 
-                        System.out.println("status_switch value from the packet");
-                        System.out.println(status_switch);
+                        switch_status = switch_status + socket.getInputStream().read();
+                        System.out.println("switch_status value from the packet");
+                        System.out.println(switch_status);
+                        switch_state_int = Integer.parseInt(switch_status);
 
                         String[] ipb = time_Zone.split("\\.");
                         if ((ip.length() + uid.length() + time_Zone.length() > 25)) {
@@ -414,12 +414,6 @@ public class SenderActivity extends AppCompatActivity {
                             ob.ip = ip;
                             ob.liquid_level = Integer.parseInt(liquid);
                             ob.intensity_level = Integer.parseInt(intensity_level);
-                            if (switch_state == 1) {
-                                ob.status_switch = true;
-                            } else {
-                                ob.status_switch = false;
-                            }
-//                            ob.status_switch = Boolean.valueOf(status_switch);
                             ob.unique_id = uid;
                             ob.zone1_start = Integer.parseInt(ipb[1]);
                             ob.zone1_start_m = Integer.parseInt(ipb[2]);
@@ -438,6 +432,11 @@ public class SenderActivity extends AppCompatActivity {
                             ob.zone4_end = Integer.parseInt(ipb[15]);
                             ob.zone4_end_m = Integer.parseInt(ipb[16]);
 
+                            if (switch_state_int == 1){
+                                ob.status_switch = true;
+                            }else {
+                                ob.status_switch = false;
+                            }
 
                             GetDataAll asyncTask = new GetDataAll(ob);
                             asyncTask.execute("add");
