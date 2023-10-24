@@ -69,20 +69,22 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
         }
 //		holder.statusSwitch.setChecked(true);
 
+        String deviceId = model.unique_id;
+
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.example.udpandroid", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-        holder.statusSwitch.setChecked(sharedPreferences.getBoolean("switch", true));
+        holder.statusSwitch.setChecked(sharedPreferences.getBoolean(deviceId, true));
 
 		holder.statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 				if (b) {
-                    editor.putBoolean("switch",true);
+                    editor.putBoolean(deviceId,true);
                     editor.apply();
                     model.status_switch = true;
 					holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_on), null, null, null);
 				} else {
-                    editor.putBoolean("switch",false);
+                    editor.putBoolean(deviceId,false);
                     editor.apply();
                     model.status_switch = false;
 					holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_off), null, null, null);
