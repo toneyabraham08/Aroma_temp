@@ -73,24 +73,31 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.example.udpandroid", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-        holder.statusSwitch.setChecked(sharedPreferences.getBoolean(deviceId, true));
+        holder.statusSwitch.setChecked(sharedPreferences.getBoolean(deviceId, model.status_switch));
 
-		holder.statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-				if (b) {
-                    editor.putBoolean(deviceId,true);
-                    editor.apply();
-                    model.status_switch = true;
-					holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_on), null, null, null);
-				} else {
-                    editor.putBoolean(deviceId,false);
-                    editor.apply();
-                    model.status_switch = false;
-					holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_off), null, null, null);
-				}
-			}
-		});
+        holder.statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                editor.putBoolean(deviceId, b);
+                editor.apply();
+                model.status_switch = b;
+
+                if (b) {
+                    holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_on), null, null, null);
+                } else {
+                    holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_off), null, null, null);
+                }
+            }
+        });
+
+//        if (model.status_switch) {
+//            editor.putBoolean(deviceId, true);
+//            editor.apply();
+//        } else {
+//            editor.putBoolean(deviceId, false);
+//            editor.apply();
+//        }
+//
         holder.courseRatingTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
