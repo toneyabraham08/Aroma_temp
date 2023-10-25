@@ -239,14 +239,15 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        String deviceId = model.unique_id;
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.udpandroid", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-        statusSwitch.setChecked(sharedPreferences.getBoolean("status_switch_key", model.status_switch));
+        statusSwitch.setChecked(sharedPreferences.getBoolean(deviceId, model.status_switch));
 
         statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                editor.putBoolean("status_switch_key",b);
+                editor.putBoolean(deviceId,b);
                 editor.apply();
                 model.status_switch = b;
             }
