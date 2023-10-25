@@ -26,7 +26,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
     private final SenderActivity.OnItemClickListener listener;
     private List<String> uniqueIds;
 
-    DeviceData model;
+//    DeviceData model;
 
     // Constructor
     public CourseAdapter(Context context, List<DeviceData> courseModelArrayList, SenderActivity.OnItemClickListener listener, List<String> uniqueIds) {
@@ -69,26 +69,26 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
         }
 //		holder.statusSwitch.setChecked(true);
 
-        String deviceId = model.unique_id;
+//        String deviceId = model.unique_id;
+//
+//        SharedPreferences sharedPreferences = context.getSharedPreferences("com.example.udpandroid", Context.MODE_PRIVATE);
+//        final SharedPreferences.Editor editor = sharedPreferences.edit();
+//        holder.statusSwitch.setChecked(sharedPreferences.getBoolean(deviceId, model.status_switch));
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("com.example.udpandroid", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharedPreferences.edit();
-        holder.statusSwitch.setChecked(sharedPreferences.getBoolean(deviceId, model.status_switch));
-
-        holder.statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                editor.putBoolean(deviceId, b);
-                editor.apply();
-                model.status_switch = b;
-
-                if (b) {
-                    holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_on), null, null, null);
-                } else {
-                    holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_off), null, null, null);
-                }
-            }
-        });
+//        holder.statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                editor.putBoolean(deviceId, b);
+//                editor.apply();
+//                model.status_switch = b;
+//
+//                if (b) {
+//                    holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_on), null, null, null);
+//                } else {
+//                    holder.courseRatingTV.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(android.R.drawable.star_off), null, null, null);
+//                }
+//            }
+//        });
 
 //        if (model.status_switch) {
 //            editor.putBoolean(deviceId, true);
@@ -136,14 +136,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.Viewholder
     public class Viewholder extends RecyclerView.ViewHolder {
         private ImageView courseIV, liquidLevel;
         private TextView courseNameTV, courseRatingTV;
-        Switch statusSwitch;
+//        Switch statusSwitch;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             courseIV = itemView.findViewById(R.id.idIVDeviceImage);
             courseNameTV = itemView.findViewById(R.id.device_name);
             courseRatingTV = itemView.findViewById(R.id.device_details);
-            statusSwitch = itemView.findViewById(R.id.status_switch);
+//            statusSwitch = itemView.findViewById(R.id.status_switch);
             liquidLevel = itemView.findViewById(R.id.device_liquid_level);
         }
     }
