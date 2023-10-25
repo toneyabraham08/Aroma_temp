@@ -69,6 +69,8 @@ public class DetailsActivity extends AppCompatActivity {
         z4_t = findViewById(R.id.button_z4_to);
         seekIntensity = findViewById(R.id.seekBar_intencity);
         statusSwitch = findViewById(R.id.status_switch);
+//        statusSwitch.setChecked(model.status_switch);
+
 
         findViewById(R.id.imageView_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,6 +222,7 @@ public class DetailsActivity extends AppCompatActivity {
         setButtonText(z4, model.zone4_start, model.zone4_start_m);
         setButtonText(z4_t, model.zone4_end, model.zone4_end_m);
         seekIntensity.setProgress(model.intensity_level);
+        statusSwitch.setChecked(model.status_switch);
         seekIntensity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -239,21 +242,38 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        String deviceId = model.unique_id;
-        SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.udpandroid", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharedPreferences.edit();
-        statusSwitch.setChecked(sharedPreferences.getBoolean(deviceId, model.status_switch));
-
         statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                editor.putBoolean(deviceId,b);
-                editor.apply();
-                model.status_switch = b;
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d("SwitchListener", "Switch state changed: " + isChecked);
+                model.status_switch = isChecked;
+                System.out.println(model.status_switch);
+//                statusSwitch.setChecked(isChecked);
             }
         });
-//        statusSwitch.setChecked(model.status_switch);
+
+//        String deviceId = model.unique_id;
+//        SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.udpandroid", Context.MODE_PRIVATE);
+//        final SharedPreferences.Editor editor = sharedPreferences.edit();
+////        statusSwitch.setChecked(sharedPreferences.getBoolean(deviceId, model.status_switch));
+//
+//        statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                editor.putBoolean(deviceId, b);
+//                editor.apply();
+//                model.status_switch = b;
+//            }
+//        });
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        statusSwitch.setChecked(model.status_switch);
+    }
+
 
     public void send_request(boolean isTcp) {
         AsyncTaskExample asyncTask = new AsyncTaskExample();
