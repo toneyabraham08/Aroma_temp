@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "306223407315",
+    "project_id": "udpandroid",
+    "storage_bucket": "udpandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306223407315:android:463892360fb62850bd3426",
+        "android_client_info": {
+          "package_name": "com.example.udpandroid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGBrWS0xNAPGnbMFrcO8EeZYtgTvCL4cI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

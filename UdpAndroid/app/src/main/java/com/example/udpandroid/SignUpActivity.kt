@@ -15,6 +15,8 @@ import androidx.room.Room
 import com.example.udpandroid.db.AppDatabase
 import com.example.udpandroid.db.UserDaoDao
 import com.example.udpandroid.db.UserData
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -28,6 +30,7 @@ class SignUpActivity : AppCompatActivity() {
     var emailet: EditText? = null
     var ndb: AppDatabase? = null
     var userDao: UserDaoDao? = null
+    var db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -63,6 +66,13 @@ class SignUpActivity : AppCompatActivity() {
             userModel.password = passet?.text.toString()
             userModel.mobileNumber = mobileet?.text.toString()
 
+            val UserMap = hashMapOf(
+                "name" to userModel.username,
+                "email" to userModel.email,
+                "mobile" to userModel.mobileNumber
+            )
+
+
             if (userModel.email.isEmpty() || userModel.username.isEmpty() || userModel.password.isEmpty() || userModel.mobileNumber.isEmpty()) {
                 // Show an alert indicating that the data can't be empty
                 Toast.makeText(baseContext, "Please Fill in the fields", Toast.LENGTH_SHORT).show()
@@ -80,6 +90,12 @@ class SignUpActivity : AppCompatActivity() {
                         editor.putInt("currentuserid", userData.uid)
                         editor.apply()
                         editor.commit()
+                        db.collection("user").document(userModel.mobileNumber).set(UserMap)
+                            .addOnSuccessListener {
+//                                Toast.makeText(this,"Logged In Successfully",Toast.LENGTH_SHORT).show()
+                                System.out.println("Successfully Logged In")
+                            }
+                        Toast.makeText(this@SignUpActivity,"Logged In Successfully",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(baseContext, PropertiesActivity::class.java))
                         finish()
                     }
