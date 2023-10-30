@@ -4,6 +4,8 @@ package com.example.udpandroid
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -31,6 +33,17 @@ class SignUpActivity : AppCompatActivity() {
     var ndb: AppDatabase? = null
     var userDao: UserDaoDao? = null
     var db = Firebase.firestore
+
+    fun isInternetAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        val network = connectivityManager.activeNetwork
+        val capabilities = connectivityManager.getNetworkCapabilities(network)
+
+        return capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -76,7 +89,7 @@ class SignUpActivity : AppCompatActivity() {
             if (userModel.email.isEmpty() || userModel.username.isEmpty() || userModel.password.isEmpty() || userModel.mobileNumber.isEmpty()) {
                 // Show an alert indicating that the data can't be empty
                 Toast.makeText(baseContext, "Please Fill in the fields", Toast.LENGTH_SHORT).show()
-            } else {
+            } else if(isInternetAvailable(this)){
                 GlobalScope.launch {
                     userDao!!.insertAll(userModel)
                     var userData = userDao!!.findByEmail(userModel?.email)
@@ -100,6 +113,10 @@ class SignUpActivity : AppCompatActivity() {
                         finish()
                     }
                 }
+            }
+            else
+            {
+                Toast.makeText(baseContext, "Please Connect to Internet", Toast.LENGTH_SHORT).show()
             }
         }
     }
